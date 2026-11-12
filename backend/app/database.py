@@ -5,7 +5,9 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 # Database URL configuration (defaults to SQLite local database file)
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./trustpay.db")
 if DATABASE_URL.startswith("postgres://"):
-    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+psycopg://", 1)
+elif DATABASE_URL.startswith("postgresql://"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+psycopg://", 1)
 
 # SQLite requires check_same_thread=False and generous timeout for concurrent FastAPI workers.
 # For PostgreSQL / MySQL, connect_args remains empty and pool_pre_ping prevents stale sockets.
