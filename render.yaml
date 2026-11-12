@@ -1,10 +1,3 @@
-databases:
-  - name: trustpay-ai-db
-    plan: free
-    region: oregon
-    databaseName: trustpay
-    user: trustpay
-
 services:
   - type: web
     name: trustpay-ai-backend
@@ -17,9 +10,7 @@ services:
     healthCheckPath: /
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: trustpay-ai-db
-          property: connectionString
+        sync: false
       - key: ENVIRONMENT
         value: production
       - key: SEED_DEMO_DATA
