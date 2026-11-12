@@ -30,18 +30,6 @@ services:
       - key: GEMINI_API_KEY
         sync: false
 
-  - type: web
-    name: trustpay-ai-frontend
-    runtime: node
-    rootDir: frontend
-    region: oregon
-    plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm run start -- -p $PORT -H 0.0.0.0
-    envVars:
-      - key: NEXT_PUBLIC_API_URL
-        sync: false
-
   - type: workflow
     name: trustpay-ai-workflows
     runtime: python
