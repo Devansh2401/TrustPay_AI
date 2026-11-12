@@ -1,6 +1,7 @@
 databases:
   - name: trustpay-ai-db
     plan: free
+    region: oregon
     databaseName: trustpay
     user: trustpay
 
@@ -9,6 +10,7 @@ services:
     name: trustpay-ai-backend
     runtime: python
     rootDir: backend
+    region: oregon
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
@@ -41,6 +43,7 @@ services:
     name: trustpay-ai-frontend
     runtime: node
     rootDir: frontend
+    region: oregon
     plan: free
     buildCommand: npm install && npm run build
     startCommand: npm run start -- -p $PORT -H 0.0.0.0
@@ -52,6 +55,7 @@ services:
     name: trustpay-ai-workflows
     runtime: python
     rootDir: workflows
+    region: oregon
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
     envVars:
